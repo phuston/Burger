@@ -1,1 +1,2 @@
-# Burger
+### Burger
+Burger is a web app which will help Jessica's Burger Joint customers get their delicious burgers even quicker (and more delicously). Burger allows users to build orders for a single burger from a list of ingredients (which will need to be updated as new stock arrives). Then it will allow Jessica's chefs to see all the pending orders, fill them, and alert customers that their burger is ready.
