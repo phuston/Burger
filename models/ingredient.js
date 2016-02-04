@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var Ingredient = new Schema({
 	name: String,
 	quantity: Number,
-	price: Number
-});
+	cost: Number
+}, {collection: 'Ingredient'});
 
 module.exports = mongoose.model('Ingredient', Ingredient);

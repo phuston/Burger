@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/* GET orders listing. */
 router.get('/', function(req, res, next) {
   // TODO: Grab all uncompleted orders here.
-  res.render('kitchen', { orders: orders });
+  res.render('kitchen');
 });
 
 router.get('/complete', function(req, res, next) {
