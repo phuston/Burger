@@ -3,7 +3,7 @@
 
 <h1>Add/Update Ingredients</h1>
 
-<form action="/ingredients/add" method="POST">
+<form id="new" action="/ingredients/add" method="POST">
   Name:
   <input type="text" name="name">
   Quantity:
@@ -13,12 +13,13 @@
   <input type="submit" value="Submit">
 </form> <br>
 
-<table>
+<table id="ingredients">
     <tr>
         <th>Name</th>
         <th>Cost</th>
         <th>Quantity</th>
         <th>Add</th>
+        <th>Remove</th>
     </tr>
     {{#each Ingredients}}
         <tr>
@@ -26,6 +27,7 @@
             <td class="cost">{{cost}}</td>
             <td class="quan">{{quantity}}</td>
             <td><input class="add" type="button" value="Add 5"></td>
+            <td><input class="remove" type="button" value="X"> </td>
         </tr>
     {{/each}}
 </table>

@@ -1,0 +1,26 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="/javascripts/kitchen.js"></script>
+
+<h1>Incomplete Orders:</h1>
+
+<table class="ingredients-list">
+    <tr>
+        <th>Complete</th>   
+        <th>Ingredients</th>
+        <th>Cost</th>
+    </tr>
+    {{#each Orders}}
+        <tr>
+            <td class="_id" style="display:none;">{{_id}}</td>
+            <td><input class="complete" type="button" value="Complete"></td>
+            <td class="ingredients">
+            {{#each ingredients}}
+                <ul>
+                    <li>{{name}}</li>
+                </ul>
+            {{/each}}
+            </td>
+            <td class="cost">{{cost}}</td>
+        </tr>
+    {{/each}}
+</table>

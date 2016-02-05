@@ -4,8 +4,10 @@ var Schema = mongoose.Schema;
 // TODO: make sure object referencing works
 
 var Order = new Schema({
-	ingredients: [{quantity: Number, ingredients: {type: Schema.Types.ObjectId, ref: 'Ingredient'}}],
-	complete: Boolean
-});
+	_id: {type: String},
+	ingredients: [{quantity: Number, name: String}],
+	complete: Boolean,
+	cost: Number
+}, {collection: 'Order'});
 
 module.exports = mongoose.model('Order', Order);
