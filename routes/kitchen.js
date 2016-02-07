@@ -15,6 +15,7 @@ router.post('/complete', function(req, res, next) {
   Order.findOneAndUpdate({_id: req.body.id}, {$set :{complete: true}}, function(err, order){
     console.log(order);
     if(err) { console.error(err) }
+    res.json({Status: "Success"})
   });
 });
 

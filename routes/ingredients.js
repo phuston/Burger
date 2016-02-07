@@ -27,7 +27,7 @@ router.post('/add', function(req, res, next) {
       html = null;
     } else {
       insert = true;
-      html = '<tr><td class="name">{0}</td><td class="cost">{1}</td><td class="quan">{2}</td><td><input class="add" type="button" value="Add 5"></td><td><input class="remove" type="button" value="X"> </td>'.format(req.body.name, req.body.cost, req.body.quantity)
+      html = '<tr><td class="name">{0}</td><td class="cost">{1}</td><td class="quan">{2}</td><td><input class="add" type="button" value="Add 5"></td><td><input class="remove" type="button" value="X"> </td><td><input class="edit" type="button" value="Edit"> </td>'.format(req.body.name, req.body.cost, req.body.quantity)
     }
     var data = {Insert: insert, row: html};
 
@@ -35,10 +35,27 @@ router.post('/add', function(req, res, next) {
   })
 });
 
-router.post('/update', function(req, res, next) {
+router.post('/add', function(req, res, next) {
   console.log(req.body.name)
   Ingredient.findOneAndUpdate({name: req.body.name}, {$inc: {quantity: 5}}, {upsert: true}, function(err, item) {
     console.log(item);
+    res.json({Status: 'Success'})
+  })
+})
+
+router.post('/edit', function(req, res, next) {
+  console.log(req.body)
+
+  var newIngredient = {
+    $set: {
+      quantity: Number(req.body.quantity),
+      cost: Number(req.body.price)  
+    }
+  }
+
+  Ingredient.findOneAndUpdate({name: req.body.name}, newIngredient, {upsert: true}, function(err, item) {
+    if (err) { console.log(err) }
+    console.log(item)
     res.json({Status: 'Success'})
   })
 })

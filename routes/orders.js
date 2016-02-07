@@ -29,9 +29,9 @@ router.post('/new', function(req, res, next) {
 	ingredients.forEach(function(ingredient){
 
 		calls.push(function(callback) {
-			var newIngredient = {inc: {quantity: -ingredient.quantity}}
+			var newIngredient = {$inc: {quantity: -ingredient.quantity}}
 
-			Ingredient.findOneAndUpdate({name: ingredient.name, quantity: {$gt: ingredient.quantity}}, newIngredient, function(err, item){
+			Ingredient.findOneAndUpdate({name: ingredient.name, quantity: {$gt: ingredient.quantity}}, newIngredient, {upsert: true}, function(err, item){
 				if(err){ return callback(err); }
 
 				if (item == null){
@@ -62,8 +62,6 @@ router.post('/new', function(req, res, next) {
 				console.error(err);
 			}
 		});
-
-
 
 	  	var body = {message: 'hello world'};
 		res.set({'Content-Type': 'application/json'});

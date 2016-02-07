@@ -8,9 +8,15 @@ $( document ).ready(function() {
         var $price = Number($row.find(".cost").text());
         var $quantity = Number($row.find(".quan").text());
 
-        $row.find(".quan").html(String($quantity + 1))
-
-        updatePrice($price)
+        var $stock = Number($row.find(".stock").text());
+        
+        if($stock > 0){
+            $row.find(".stock").html(String($stock-1))
+            $row.find(".quan").html(String($quantity + 1))
+            updatePrice($price)
+        } else {
+            alert("There are not enough " + $name + "s in stock. Sorry.")
+        }
 	});
 
     $(".sub").click(function(){
@@ -19,9 +25,12 @@ $( document ).ready(function() {
         var $price = Number($row.find(".cost").text());
         var $quantity = Number($row.find(".quan").text());
 
+        var $stock = Number($row.find(".stock").text());
+
         if ($quantity > 0){
             $row.find(".quan").html(String($quantity - 1))
             updatePrice(-$price)
+            $row.find(".stock").html(String($stock + 1))
         } else {
             alert("You can't have negative " + $name)
         }
@@ -52,13 +61,14 @@ $( document ).ready(function() {
             data:orderString,
             contentType:'application/json',
             url:'orders/new',
-            success: handleResponse,
-            complete: handleResponse
+            success: handleResponse
         })
     });
 
     function handleResponse(data){
-        console.log(data);
+        $(".quan").html("0");
+        $("#totalprice").html("$0.00");
+        alert("Order complete!")
     }
 
 
