@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var ingredients = require('./routes/ingredients');
 var kitchen = require('./routes/kitchen');
 var orders = require('./routes/orders')
+var index = require('./routes/index')
 
 mongoose.connect('mongodb://patrick:olinjs@ds055515.mongolab.com:55515/burger');
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', index);
 app.use('/ingredients', ingredients);
 app.use('/kitchen', kitchen);
 app.use('/orders', orders);
