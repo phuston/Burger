@@ -20,6 +20,7 @@ router.post('/add', function(req, res, next) {
     cost: req.body.cost,
     quantity: req.body.quantity
   }
+  // Love upsert man
   Ingredient.findOneAndUpdate({name: req.body.name}, {$setOnInsert : newIngredient}, {upsert: true}, function(err, item){
 
     if(item){
@@ -35,6 +36,7 @@ router.post('/add', function(req, res, next) {
   })
 });
 
+// In general, don't put your logs in the "final" version of your code on "master"/"production"
 router.post('/add', function(req, res, next) {
   console.log(req.body.name)
   Ingredient.findOneAndUpdate({name: req.body.name}, {$inc: {quantity: 5}}, {upsert: true}, function(err, item) {
@@ -61,6 +63,8 @@ router.post('/edit', function(req, res, next) {
 })
 
 router.post('/remove', function(req, res, next) {
+  // Cool, you can also find and remove by id, which tends to be most of the times the defacto
+  // way 
   Ingredient.remove({name: req.body.name}, function(err){
     if(err){
       console.log(err);

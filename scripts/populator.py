@@ -6,6 +6,7 @@ from datetime import timedelta
 import pprint
 
 
+# Haha I like that
 client = MongoClient('mongodb://patrick:olinjs@ds055515.mongolab.com:55515/burger')
 db = client.get_default_database()
 

@@ -53,6 +53,11 @@ $( document ).ready(function() {
             }
         })
 
+        // Nice catch to stringify the data here. jQuery has a "bug" where if you send 
+        // a list of strings as a POST req over to the backend you can only access it by req.body["listOfStrings[]"],
+        // but by stringifying it you are good :+1:
+        // Don't leave your logs hangind in master ;)
+    
         var orderString = JSON.stringify(order);
         console.log(orderString);
 
